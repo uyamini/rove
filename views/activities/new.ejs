@@ -1,0 +1,39 @@
+<!-- views/activities/new.ejs -->
+<%- include('../partials/header') %>
+
+<h1>Create New Activity</h1>
+<form action="/activities" method="POST">
+  <div>
+    <label for="name">Activity Name:</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+  </div>
+  <div>
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+      <option value="food">Food</option>
+      <option value="social">Social</option>
+      <option value="health and fitness">Health and Fitness</option>
+      <option value="sights">Sights</option>
+      <option value="parties">Parties</option>
+    </select>
+  </div>
+  <div>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+  </div>
+  <div>
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required>
+  </div>
+  <div>
+    <label for="cost">Cost:</label>
+    <input type="number" id="cost" name="cost" step="0.01" required>
+  </div>
+  <button type="submit">Create Activity</button>
+</form>
+
+<%- include('../partials/footer') %>

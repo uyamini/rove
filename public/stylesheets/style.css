@@ -1,3 +1,5 @@
+/* public/stylesheets/style.css */
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -7,4 +9,20 @@ a {
   color: #00B7FF;
 }
 
+.nav-wrapper {
+  background-color: #333;
+  padding: 0 20px;
+}
+
+.nav-wrapper a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.page-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
 

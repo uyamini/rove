@@ -10,7 +10,6 @@ require('./config/database');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-
 var app = express();
 
 // view engine setup
@@ -22,6 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Define the homepage route before error-handling middleware
+app.get('/', function(req, res) {
+  res.render('home', { title: 'Welcome to Rove' });
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

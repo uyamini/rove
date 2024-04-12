@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<div class="activity-details">
+  <h2><%= activity.name %></h2>
+  <p><%= activity.description %></p>
+  <!-- Include other activity details as needed -->
+
+  <h3>Reviews</h3>
+  <% if (activity.reviews && activity.reviews.length) { %>
+    <ul>
+      <% activity.reviews.forEach(review => { %>
+        <li>
+          <strong>Rating:</strong> <%= review.rating %><br>
+          <strong>Review:</strong> <%= review.content %><br>
+          <!-- Assuming review.author is populated -->
+          <strong>By:</strong> <%= review.author.name %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No reviews yet. Be the first to review!</p>
+  <% } %>
+
+  <!-- Review submission form for logged-in users -->
+  <% if (user) { %>
+    <h3>Leave a Review</h3>
+    <form action="/activities/<%= activity._id %>/reviews" method="POST">
+      <div>
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" required min="1" max="5">
+      </div>
+      <div>
+        <label for="content">Review:</label>
+        <textarea id="content" name="content" required></textarea>
+      </div>
+      <button type="submit">Post Review</button>
+    </form>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

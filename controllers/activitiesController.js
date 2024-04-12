@@ -1,6 +1,23 @@
 const Activity = require('../models/activity');
-
+const Review = require('../models/review');
 // Define the controller actions separately
+
+const show = async (req, res, next) => {
+    try {
+      const activity = await Activity.findById(req.params.id)
+        .populate('createdBy') // Assuming you want to show who created the activity
+        .exec();
+      
+      const reviews = await Review.find({ activity: req.params.id })
+        .populate('author') // Assuming reviews reference their author
+        .exec();
+  
+      res.render('activities/show', { activity, reviews, user: req.user });
+    } catch (error) {
+      next(error);
+    }
+  };
+
 const index = async (req, res) => {
   const activities = await Activity.find({});
   res.render('activities/index', { activities });
@@ -27,4 +44,5 @@ module.exports = {
   newForm,
   create,
   likeActivity,
+   show,
 };
